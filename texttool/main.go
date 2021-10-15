@@ -116,8 +116,6 @@ func main() {
 
 		}
 	}
-	fmt.Println()
-	fmt.Println(words1)
 
 	// remove space before punctuation and add space after punctuation by adding to new variable
 
@@ -147,8 +145,6 @@ func main() {
 		}
 
 	}
-	fmt.Println()
-	fmt.Println(words2)
 
 	// write to result.txt
 	d1 := []byte(words2)
@@ -160,6 +156,7 @@ func main() {
 	dat1, err := os.ReadFile(output)
 	Check(err)
 
+	fmt.Println()
 	fmt.Println(string(dat1))
 
 }
