@@ -93,8 +93,12 @@ func main() {
 	/// remove operation tags by only adding elements that are not equal to them to a new string
 	words1 := ""
 	for i, word := range words {
-		if 
-		if word != "(hex)" && word != "(bin)" && word != "(cap)" && word != "(up)" && word != "(low)" {
+		// removing operation tags followed by numbers
+		if word == "(cap," || word == "(up," || word == "(low," {
+			// sets them to nothing and when it finds nothing it does not add to new variable
+			words[i] = ""
+			words[i+1] = ""
+		} else if word != "(hex)" && word != "(bin)" && word != "(cap)" && word != "(up)" && word != "(low)" && word != "" {
 			// add first word without space
 			if i == 0 {
 				words1 = words1 + word
