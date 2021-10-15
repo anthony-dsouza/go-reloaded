@@ -150,4 +150,16 @@ func main() {
 	fmt.Println()
 	fmt.Println(words2)
 
+	// write to result.txt
+	d1 := []byte(words2)
+	output := os.Args[2]
+	err1 := os.WriteFile(output, d1, 0644)
+	Check(err1)
+
+	// read sample.txt file
+	dat1, err := os.ReadFile(output)
+	Check(err)
+
+	fmt.Println(string(dat1))
+
 }
