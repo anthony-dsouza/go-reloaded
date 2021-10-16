@@ -113,7 +113,6 @@ func main() {
 			} else {
 				words1 = words1 + " " + word
 			}
-
 		}
 	}
 
@@ -146,8 +145,44 @@ func main() {
 
 	}
 
+	// change for '''
+	words3 := ""
+
+	// removeSpace is used to check if the space already added to word3 needs to be removed
+	// it is set to false to begin with because when we encounter the first ''' the space does not need to removed
+	removeSpace := false
+	for i, letter := range words2 {
+		// we will first search for cases were there is a space before or after the '''
+		// if there is no space before or after then the ''' is in the correct position at this point
+		if letter == 39 && (words2[i-1] == ' ' || words2[i+2] == ' ') {
+			// for the very first ''' removeSpace will be false and will just add the ''' to words3 and set removeSpace to true
+			// until it has found another ''' removeSpace will remain true.
+			if removeSpace {
+				words3 = words3[:len(words3)-1]
+				words3 = words3 + string(letter)
+				removeSpace = false
+			} else {
+				words3 = words3 + string(letter)
+				removeSpace = true
+			}
+		} else if i > 1 && words2[i-2] == 39 {
+			// the index "i" would need to be greater than 1 because when we check for ''' we need to look
+			// 2 indexes back because there would need to be space between that needs to be taken into account
+			// if removeSpace will be set to true after the first encounter, we will delete the space by removing the
+			// last value in words3 and then adding the next element.
+			if removeSpace {
+				words3 = words3[:len(words3)-1]
+				words3 = words3 + string(letter)
+			} else {
+				words3 = words3 + string(letter)
+			}
+		} else {
+			words3 = words3 + string(letter)
+		}
+	}
+
 	// write to result.txt
-	d1 := []byte(words2)
+	d1 := []byte(words3)
 	output := os.Args[2]
 	err1 := os.WriteFile(output, d1, 0644)
 	Check(err1)
