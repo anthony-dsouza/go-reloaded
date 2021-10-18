@@ -25,10 +25,6 @@ func main() {
 	// change for '''
 	str = tool.SortQuotes(str)
 
-	// add newline
-
-	str = str + "\n"
-
 	// write to result.txt
 	result := []byte(str)
 	output := os.Args[2]
