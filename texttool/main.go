@@ -9,10 +9,10 @@ import (
 func main() {
 	// read sample.txt file
 	input := os.Args[1]
-	dat, err := os.ReadFile(input)
-	tool.Check(err)
+	inData, errInput := os.ReadFile(input)
+	tool.Check(errInput)
 
-	words := tool.SplitWhiteSpaces(string(dat))
+	words := tool.SplitWhiteSpaces(string(inData))
 
 	// implement changes for operation tags and 'a'
 	words = tool.Operation(words)
@@ -29,15 +29,15 @@ func main() {
 	str = tool.SortQuotes(str)
 
 	// write to result.txt
-	d1 := []byte(str)
+	result := []byte(str)
 	output := os.Args[2]
-	err1 := os.WriteFile(output, d1, 0644)
-	tool.Check(err1)
+	errResult := os.WriteFile(output, result, 0644)
+	tool.Check(errResult)
 
 	// read result.txt file
-	dat1, err := os.ReadFile(output)
-	tool.Check(err)
+	outData, errOutput := os.ReadFile(output)
+	tool.Check(errOutput)
 
-	fmt.Println(string(dat1))
+	fmt.Println(string(outData))
 
 }
