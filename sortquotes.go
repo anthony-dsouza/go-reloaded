@@ -9,7 +9,8 @@ func SortQuotes(s string) string {
 	for i, letter := range s {
 		// we will first search for cases were there is a space before or after the '''
 		// if there is no space before or after then the ''' is in the correct position at this point
-		if letter == 39 && (s[i-1] == ' ' || s[i+2] == ' ') {
+
+		if letter == 39 && (s[i-1] == ' ') {
 			// for the very first ''' removeSpace will be false and will just add the ''' to str and set removeSpace to true
 			// until it has found another ''' removeSpace will remain true.
 			if removeSpace {
@@ -20,7 +21,7 @@ func SortQuotes(s string) string {
 				str = str + string(letter)
 				removeSpace = true
 			}
-		} else if i > 1 && s[i-2] == 39 {
+		} else if i > 1 && s[i-2] == 39 && s[i-1] == ' ' {
 			// the index "i" would need to be greater than 1 because when we check for ''' we need to look
 			// 2 indexes back because there would need to be space between that needs to be taken into account
 			// if removeSpace will be set to true after the first encounter, we will delete the space by removing the

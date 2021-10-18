@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"tool"
 )
@@ -21,23 +20,19 @@ func main() {
 	str := tool.RemoveTags(words)
 
 	// remove space before punctuation and add space after punctuation by adding to new variable
-
 	str = tool.SortPunctuation(str)
 
 	// change for '''
-
 	str = tool.SortQuotes(str)
+
+	// add newline
+
+	str = str + "\n"
 
 	// write to result.txt
 	result := []byte(str)
 	output := os.Args[2]
 	errResult := os.WriteFile(output, result, 0644)
 	tool.Check(errResult)
-
-	// read result.txt file
-	outData, errOutput := os.ReadFile(output)
-	tool.Check(errOutput)
-
-	fmt.Println(string(outData))
 
 }
