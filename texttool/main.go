@@ -34,7 +34,7 @@ func main() {
 	err1 := os.WriteFile(output, d1, 0644)
 	tool.Check(err1)
 
-	// read sample.txt file
+	// read result.txt file
 	dat1, err := os.ReadFile(output)
 	tool.Check(err)
 
